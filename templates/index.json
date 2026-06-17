@@ -69,31 +69,31 @@
     "airtaghero_bee9qy": {
       "type": "airtaghero",
       "blocks": {
-        "feature_N86YQB": {
-          "type": "feature",
-          "settings": {
-            "icon": "pin",
-            "title": "Airtag\nIntegration"
-          }
-        },
         "feature_mbffxp": {
           "type": "feature",
           "settings": {
             "icon": "rfid",
-            "title": "RFID\nProtection"
+            "title": "Protection RFID"
+          }
+        },
+        "feature_N86YQB": {
+          "type": "feature",
+          "settings": {
+            "icon": "pin",
+            "title": "Intégration AirTag"
           }
         },
         "feature_hBryxQ": {
           "type": "feature",
           "settings": {
             "icon": "sparkle",
-            "title": "Minimalist\nDesign"
+            "title": "Design Minimaliste"
           }
         }
       },
       "block_order": [
-        "feature_N86YQB",
         "feature_mbffxp",
+        "feature_N86YQB",
         "feature_hBryxQ"
       ],
       "name": "Wallet AirTag Hero",
@@ -104,14 +104,14 @@
         "desktop_height": 900,
         "content_width": 430,
         "side_padding": 34,
-        "padding_top": 10,
+        "padding_top": 14,
         "padding_bottom": 0,
         "overlay_top": 93,
         "overlay_middle": 36,
         "overlay_bottom": 5,
         "show_badge": true,
         "badge_stars": "★★★★★",
-        "badge_text": "Over 1,800+ 5 Star Reviews",
+        "badge_text": "+1,800 avis 5 étoiles",
         "title": "ÉLÉGANT. SÉCURISÉ.\nLOCALISABLE.",
         "subtitle": "With built-in tracking and RFID protection, your wallet stays secure and always within reach—wherever life takes you.",
         "button_text": "PROFITEZ DE -50 % | OFFRE LIMITÉE",
