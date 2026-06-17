@@ -17,7 +17,7 @@
         "message": {
           "type": "message",
           "settings": {
-            "text": "Announce something here",
+            "text": "LIVRAISON OFFERTE EN FRANCE",
             "url": ""
           }
         }
@@ -25,6 +25,7 @@
       "block_order": [
         "message"
       ],
+      "disabled": true,
       "settings": {
         "enable_sticky": false,
         "autoplay": false,
@@ -35,6 +36,51 @@
         "background": "#1a1a1a",
         "background_gradient": "",
         "text_color": "#ffffff"
+      }
+    },
+    "barreannonce_qn4mGM": {
+      "type": "barreannonce",
+      "name": "Barre annonce custom",
+      "settings": {
+        "main_text": "SITEWIDE SALE",
+        "badge_text": "UP TO 50% OFF",
+        "link": "",
+        "show_icon": true,
+        "icon_type": "fire",
+        "icon_size": 13,
+        "icon_box_size": 18,
+        "icon_stroke_width": 2,
+        "icon_color": "#ffffff",
+        "background_color": "#000000",
+        "text_color": "#ffffff",
+        "badge_background_color": "#82BF52",
+        "badge_text_color": "#ffffff",
+        "badge_border_color": "#4f86e8",
+        "border_color": "#11233f",
+        "bar_height": 52,
+        "padding_vertical": 8,
+        "padding_horizontal": 12,
+        "elements_gap": 12,
+        "content_position": "center",
+        "wrap_content": "nowrap",
+        "border_top_width": 0,
+        "border_bottom_width": 0,
+        "text_size_mobile": 11,
+        "text_size_desktop": 15,
+        "text_weight": 800,
+        "text_letter_spacing": 0,
+        "text_line_height": 100,
+        "text_transform": "uppercase",
+        "badge_height": 30,
+        "badge_padding_horizontal": 17,
+        "badge_radius": 8,
+        "badge_border_width": 0,
+        "badge_text_size_mobile": 14,
+        "badge_text_size_desktop": 15,
+        "badge_text_weight": 800,
+        "badge_letter_spacing": 0,
+        "badge_line_height": 100,
+        "badge_text_transform": "uppercase"
       }
     },
     "header": {
@@ -64,6 +110,7 @@
   },
   "order": [
     "announcement-bar",
+    "barreannonce_qn4mGM",
     "header"
   ]
 }

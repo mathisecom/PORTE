@@ -9,6 +9,63 @@
  */
 {
   "sections": {
+    "benfitdelite_XyQqk3": {
+      "type": "benfitdelite",
+      "blocks": {
+        "benefit_nLHzKi": {
+          "type": "benefit",
+          "settings": {
+            "text": "Quick Card Access",
+            "icon": "card"
+          }
+        },
+        "benefit_4xxFLX": {
+          "type": "benefit",
+          "settings": {
+            "text": "RFID Blocking Security",
+            "icon": "rfid"
+          }
+        },
+        "benefit_JjqHeR": {
+          "type": "benefit",
+          "settings": {
+            "text": "Carbon Fiber",
+            "icon": "carbon"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_nLHzKi",
+        "benefit_4xxFLX",
+        "benefit_JjqHeR"
+      ],
+      "name": "Bande défilante avantages",
+      "settings": {
+        "background_color": "#ead39b",
+        "text_color": "#111111",
+        "icon_color": "#111111",
+        "border_color": "#111111",
+        "padding_top": 7,
+        "padding_bottom": 7,
+        "item_gap": 46,
+        "icon_text_gap": 8,
+        "border_top_width": 1,
+        "border_bottom_width": 1,
+        "text_size_mobile": 13,
+        "text_size_desktop": 14,
+        "text_weight": 700,
+        "text_line_height": 100,
+        "letter_spacing": 0,
+        "text_transform": "none",
+        "icon_size": 18,
+        "icon_box_size": 22,
+        "icon_stroke_width": 2,
+        "speed": 22,
+        "direction": "left",
+        "pause_on_hover": true,
+        "repeat_count": 8
+      }
+    },
     "airtaghero_bee9qy": {
       "type": "airtaghero",
       "blocks": {
@@ -167,6 +224,7 @@
     }
   },
   "order": [
+    "benfitdelite_XyQqk3",
     "airtaghero_bee9qy",
     "faq"
   ]
