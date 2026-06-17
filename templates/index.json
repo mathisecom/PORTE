@@ -15,21 +15,21 @@
         "benefit_nLHzKi": {
           "type": "benefit",
           "settings": {
-            "text": "Quick Card Access",
+            "text": "Accès Rapide aux Cartes",
             "icon": "card"
           }
         },
         "benefit_4xxFLX": {
           "type": "benefit",
           "settings": {
-            "text": "RFID Blocking Security",
+            "text": "Sécurité Anti-RFID",
             "icon": "rfid"
           }
         },
         "benefit_JjqHeR": {
           "type": "benefit",
           "settings": {
-            "text": "Carbon Fiber",
+            "text": "Fibre de Carbone",
             "icon": "carbon"
           }
         }
@@ -60,7 +60,7 @@
         "icon_size": 18,
         "icon_box_size": 22,
         "icon_stroke_width": 2,
-        "speed": 22,
+        "speed": 46,
         "direction": "left",
         "pause_on_hover": true,
         "repeat_count": 8
