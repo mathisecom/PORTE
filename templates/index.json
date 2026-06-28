@@ -67,6 +67,204 @@
         "repeat_count": 8
       }
     },
+    "sectionheormain_zfiwzy": {
+      "type": "sectionheormain",
+      "blocks": {
+        "avatar_JdnQkq": {
+          "type": "avatar",
+          "settings": {
+            "avatar_alt": "Client satisfait"
+          }
+        },
+        "avatar_GDqDkt": {
+          "type": "avatar",
+          "settings": {
+            "avatar_alt": "Client satisfait"
+          }
+        },
+        "avatar_TyJcaE": {
+          "type": "avatar",
+          "settings": {
+            "avatar_alt": "Client satisfait"
+          }
+        }
+      },
+      "block_order": [
+        "avatar_JdnQkq",
+        "avatar_GDqDkt",
+        "avatar_TyJcaE"
+      ],
+      "name": "Hero nutrition moderne",
+      "settings": {
+        "image_fit": "cover",
+        "image_position": "center center",
+        "image_ratio": 155,
+        "image_ratio_mobile": 155,
+        "image_position_desktop": "left",
+        "image_position_mobile": "top",
+        "show_badge": true,
+        "badge_text_main": "32+",
+        "badge_text_sub": "superaliments",
+        "badge_position": "top-right",
+        "badge_size_desktop": 78,
+        "badge_size_mobile": 72,
+        "badge_offset_x": 24,
+        "badge_offset_y": 24,
+        "badge_main_size": 27,
+        "badge_main_size_mobile": 25,
+        "badge_sub_size": 11,
+        "badge_sub_size_mobile": 10,
+        "badge_background": "#FFFFFF",
+        "badge_text_color": "#003F1B",
+        "badge_border_color": "#003F1B",
+        "badge_border_width": 1,
+        "show_social_proof": true,
+        "show_avatars": true,
+        "show_stars": true,
+        "star_count": 5,
+        "star_symbol": "★",
+        "stars_label": "Note de 4,8 sur 5",
+        "rating_text": "<strong>4,8 étoiles</strong> | <strong>1789+ avis</strong> | <strong>10 000+</strong> utilisateurs",
+        "avatar_size": 46,
+        "avatar_border_width": 3,
+        "avatar_border_color": "#FFFFFF",
+        "star_size": 19,
+        "rating_size": 13,
+        "proof_margin_bottom": 34,
+        "proof_margin_bottom_mobile": 28,
+        "heading_tag": "h2",
+        "heading_line_1": "La nutrition,",
+        "heading_italic": "c’est dur.",
+        "brand_text": "Cloud",
+        "show_brand_dot": true,
+        "heading_line_2": "la rend facile.",
+        "heading_font_family": "Georgia, 'Times New Roman', serif",
+        "heading_size_desktop": 60,
+        "heading_size_mobile": 44,
+        "heading_weight": 400,
+        "italic_weight": 400,
+        "heading_line_height": "0.9",
+        "heading_line_height_mobile": "0.95",
+        "description": "<p>Comblez les manques de votre alimentation. Plus de <strong>96 %</strong> d’entre nous manquent de nutriments essentiels : Cloud les regroupe dans 3 gummies savoureux — énergie, concentration et sommeil réparateur.</p>",
+        "description_width": 620,
+        "body_size": 15,
+        "body_size_mobile": 14,
+        "description_margin_top": 26,
+        "description_margin_top_mobile": 22,
+        "button_text": "Commencer mon parcours Cloud",
+        "button_link": "",
+        "button_arrow": "→",
+        "button_height": 58,
+        "button_height_mobile": 58,
+        "button_padding_x": 38,
+        "button_padding_x_mobile": 30,
+        "button_radius": 38,
+        "button_font_size": 16,
+        "button_font_size_mobile": 16,
+        "button_margin_top": 28,
+        "button_margin_top_mobile": 28,
+        "button_full_mobile": true,
+        "button_shadow_opacity": 18,
+        "show_guarantee": true,
+        "guarantee_icon": "☠",
+        "guarantee_text": "Garantie satisfait ou remboursé 30 jours",
+        "guarantee_size": 12,
+        "background_color": "#F7F7F4",
+        "card_background": "#EDEBE4",
+        "text_color": "#003F1B",
+        "muted_color": "#111111",
+        "accent_color": "#9BD36A",
+        "stars_color": "#F8B400",
+        "button_background": "#1D1D1D",
+        "button_text_color": "#FFFFFF",
+        "container_width": 1220,
+        "content_width": 640,
+        "desktop_gap": 80,
+        "mobile_gap": 28,
+        "text_align_desktop": "center",
+        "text_align_mobile": "center",
+        "card_radius": 22,
+        "card_radius_mobile": 18,
+        "card_shadow_opacity": 5,
+        "padding_top_desktop": 80,
+        "padding_bottom_desktop": 80,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 36,
+        "enable_animation": true
+      }
+    },
+    "logoscroll_CTbCCG": {
+      "type": "logoscroll",
+      "blocks": {
+        "image_J79qdx": {
+          "type": "image",
+          "settings": {
+            "url": ""
+          }
+        },
+        "image_H7y8y6": {
+          "type": "image",
+          "settings": {
+            "url": ""
+          }
+        },
+        "image_3bJzik": {
+          "type": "image",
+          "settings": {
+            "url": ""
+          }
+        },
+        "image_E9BzCF": {
+          "type": "image",
+          "settings": {
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_J79qdx",
+        "image_H7y8y6",
+        "image_3bJzik",
+        "image_E9BzCF"
+      ],
+      "name": "SS - Scrolling logo cloud #5",
+      "settings": {
+        "layout_radius": 30,
+        "layout_border_thickness": 0,
+        "heading": "",
+        "heading_custom": false,
+        "heading_font": "josefin_sans_n4",
+        "heading_size": 18,
+        "heading_size_mobile": 18,
+        "heading_height": 130,
+        "scrolling_velocity": 30,
+        "scrolling_velocity_mobile": 30,
+        "scrolling_direction": "left",
+        "pause_hover": false,
+        "scrolling_gap": 70,
+        "scrolling_gap_mobile": 30,
+        "card_width_desktop": 130,
+        "card_width_mobile": 100,
+        "heading_color": "#121212",
+        "layout_bg_color": "#FFFFFF",
+        "layout_border_color": "#121212",
+        "background_color": "#FFFFFF",
+        "border_color": "#121212",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 0,
+        "full_width": false,
+        "content_width": 1200,
+        "border_thickness": 0,
+        "section_radius": 0,
+        "lazy": true
+      }
+    },
     "airtaghero_bee9qy": {
       "type": "airtaghero",
       "blocks": {
@@ -227,6 +425,8 @@
   },
   "order": [
     "benfitdelite_XyQqk3",
+    "sectionheormain_zfiwzy",
+    "logoscroll_CTbCCG",
     "airtaghero_bee9qy",
     "faq"
   ]
