@@ -199,24 +199,35 @@
         "image_J79qdx": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/logo-1.webp",
             "url": ""
           }
         },
         "image_H7y8y6": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/CNN.webp",
             "url": ""
           }
         },
         "image_3bJzik": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/logo-3.webp",
             "url": ""
           }
         },
         "image_E9BzCF": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/logo-4.avif",
+            "url": ""
+          }
+        },
+        "image_TF4tDN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/logo-5.webp",
             "url": ""
           }
         }
@@ -225,7 +236,8 @@
         "image_J79qdx",
         "image_H7y8y6",
         "image_3bJzik",
-        "image_E9BzCF"
+        "image_E9BzCF",
+        "image_TF4tDN"
       ],
       "name": "SS - Scrolling logo cloud #5",
       "settings": {
