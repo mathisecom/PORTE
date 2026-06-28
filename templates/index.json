@@ -39,6 +39,7 @@
         "benefit_4xxFLX",
         "benefit_JjqHeR"
       ],
+      "disabled": true,
       "name": "Bande défilante avantages",
       "settings": {
         "background_color": "#ead39b",
@@ -96,6 +97,7 @@
         "feature_N86YQB",
         "feature_hBryxQ"
       ],
+      "disabled": true,
       "name": "Wallet AirTag Hero",
       "settings": {
         "background_image": "shopify://shop_images/ChatGPT_Image_17_juin_2026_12_09_31.png",
