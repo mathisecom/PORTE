@@ -103,7 +103,7 @@
         "image_fit": "cover",
         "image_position": "center center",
         "image_ratio": 155,
-        "image_ratio_mobile": 120,
+        "image_ratio_mobile": 100,
         "image_position_desktop": "left",
         "image_position_mobile": "top",
         "show_badge": false,
