@@ -88,7 +88,6 @@
       "settings": {
         "enable_sticky": true,
         "hide_on_scroll": false,
-        "logo": "shopify://shop_images/Nouveau_projet_53.jpg",
         "logo_max_width": 120,
         "logo_mobile_max_width": 145,
         "menu": "main-menu",
