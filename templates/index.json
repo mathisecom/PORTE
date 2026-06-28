@@ -111,7 +111,7 @@
         "badge_offset_x": 24,
         "badge_offset_y": 24,
         "badge_main_size": 27,
-        "badge_main_size_mobile": 25,
+        "badge_main_size_mobile": 21,
         "badge_sub_size": 11,
         "badge_sub_size_mobile": 10,
         "badge_background": "#FFFFFF",
@@ -124,11 +124,11 @@
         "star_count": 5,
         "star_symbol": "★",
         "stars_label": "Note de 4,8 sur 5",
-        "rating_text": "<strong>4,8 étoiles</strong> | <strong>1789+ avis</strong> | <strong>10 000+</strong> utilisateurs",
+        "rating_text": "<strong>4,8 étoiles</strong> | <strong>1789+ avis</strong>",
         "avatar_size": 46,
         "avatar_border_width": 3,
         "avatar_border_color": "#FFFFFF",
-        "star_size": 19,
+        "star_size": 17,
         "rating_size": 13,
         "proof_margin_bottom": 34,
         "proof_margin_bottom_mobile": 28,
@@ -139,18 +139,18 @@
         "show_brand_dot": true,
         "heading_line_2": "la rend facile.",
         "heading_font_family": "Georgia, 'Times New Roman', serif",
-        "heading_size_desktop": 60,
-        "heading_size_mobile": 44,
+        "heading_size_desktop": 49,
+        "heading_size_mobile": 33,
         "heading_weight": 400,
         "italic_weight": 400,
         "heading_line_height": "0.9",
         "heading_line_height_mobile": "0.95",
         "description": "<p>Comblez les manques de votre alimentation. Plus de <strong>96 %</strong> d’entre nous manquent de nutriments essentiels : Cloud les regroupe dans 3 gummies savoureux — énergie, concentration et sommeil réparateur.</p>",
         "description_width": 620,
-        "body_size": 15,
-        "body_size_mobile": 14,
+        "body_size": 14,
+        "body_size_mobile": 13,
         "description_margin_top": 26,
-        "description_margin_top_mobile": 22,
+        "description_margin_top_mobile": 20,
         "button_text": "DÉCOUVRIR",
         "button_link": "",
         "button_arrow": "→",
@@ -174,7 +174,7 @@
         "text_color": "#3C3C3C",
         "muted_color": "#111111",
         "accent_color": "#9BD36A",
-        "stars_color": "#F8B400",
+        "stars_color": "#00B67A",
         "button_background": "#FF9799",
         "button_text_color": "#FFFFFF",
         "container_width": 1220,
@@ -210,13 +210,6 @@
             "url": ""
           }
         },
-        "image_3bJzik": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/logo-3.webp",
-            "url": ""
-          }
-        },
         "image_E9BzCF": {
           "type": "image",
           "settings": {
@@ -235,7 +228,6 @@
       "block_order": [
         "image_J79qdx",
         "image_H7y8y6",
-        "image_3bJzik",
         "image_E9BzCF",
         "image_TF4tDN"
       ],
@@ -247,7 +239,7 @@
         "heading_custom": false,
         "heading_font": "josefin_sans_n4",
         "heading_size": 18,
-        "heading_size_mobile": 18,
+        "heading_size_mobile": 15,
         "heading_height": 130,
         "scrolling_velocity": 30,
         "scrolling_velocity_mobile": 30,
