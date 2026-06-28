@@ -202,21 +202,22 @@
         "image_J79qdx": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Nouveau_projet_42.png",
+            "image": "shopify://shop_images/cosmopolitian_462d36b8-5e03-4b2e-90ab-8b975be7e014.svg",
             "url": ""
           }
         },
         "image_H7y8y6": {
           "type": "image",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Nouveau_projet_41.png",
+            "image": "shopify://shop_images/Natural_Health.svg",
             "url": ""
           }
         },
         "image_E9BzCF": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Nouveau_projet_40.png",
+            "image": "shopify://shop_images/healthline_black_1.svg",
             "url": ""
           }
         }
@@ -237,13 +238,13 @@
         "heading_size_mobile": 15,
         "heading_height": 130,
         "scrolling_velocity": 30,
-        "scrolling_velocity_mobile": 30,
+        "scrolling_velocity_mobile": 20,
         "scrolling_direction": "left",
         "pause_hover": false,
         "scrolling_gap": 70,
-        "scrolling_gap_mobile": 0,
+        "scrolling_gap_mobile": 42,
         "card_width_desktop": 130,
-        "card_width_mobile": 170,
+        "card_width_mobile": 100,
         "heading_color": "#121212",
         "layout_bg_color": "#F6D9D6",
         "layout_border_color": "#121212",
