@@ -309,8 +309,8 @@
           "settings": {
             "icon": "picto-coupon",
             "custom_icon": "shopify://shop_images/gentle-circle_4ab6e9d2-7c1e-434d-970a-6b246714db26.avif",
-            "mobile_icon_width": 40,
-            "icon_width": 40,
+            "mobile_icon_width": 56,
+            "icon_width": 56,
             "icon_background_type": "none",
             "icon_background": "",
             "icon_color": "",
@@ -323,8 +323,8 @@
           "settings": {
             "icon": "picto-coupon",
             "custom_icon": "shopify://shop_images/effects-circle_50ea9642-e69b-4e64-8a7b-8557f3bd5748.avif",
-            "mobile_icon_width": 40,
-            "icon_width": 40,
+            "mobile_icon_width": 56,
+            "icon_width": 56,
             "icon_background_type": "none",
             "icon_background": "",
             "icon_color": "",
@@ -337,8 +337,8 @@
           "settings": {
             "icon": "picto-coupon",
             "custom_icon": "shopify://shop_images/smooth-circle_e63c9d1a-b99f-4c8f-a247-58ec9af6b0df.avif",
-            "mobile_icon_width": 40,
-            "icon_width": 40,
+            "mobile_icon_width": 56,
+            "icon_width": 56,
             "icon_background_type": "none",
             "icon_background": "",
             "icon_color": "",
@@ -351,8 +351,8 @@
           "settings": {
             "icon": "picto-coupon",
             "custom_icon": "shopify://shop_images/makeup-circle_6e19879a-4c23-4c9b-9c0c-f47f7043a2fc.avif",
-            "mobile_icon_width": 40,
-            "icon_width": 40,
+            "mobile_icon_width": 56,
+            "icon_width": 56,
             "icon_background_type": "none",
             "icon_background": "",
             "icon_color": "",
