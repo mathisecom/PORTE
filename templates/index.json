@@ -301,6 +301,85 @@
         "spacing": "small"
       }
     },
+    "text_with_icons_yLTqP3": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item_kncUeV": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "custom_icon": "shopify://shop_images/gentle-circle_4ab6e9d2-7c1e-434d-970a-6b246714db26.avif",
+            "mobile_icon_width": 40,
+            "icon_width": 40,
+            "icon_background_type": "none",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "Free shipping",
+            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+          }
+        },
+        "item_Nz8iTd": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "custom_icon": "shopify://shop_images/effects-circle_50ea9642-e69b-4e64-8a7b-8557f3bd5748.avif",
+            "mobile_icon_width": 40,
+            "icon_width": 40,
+            "icon_background_type": "none",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "Free shipping",
+            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+          }
+        },
+        "item_AQh4MD": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "custom_icon": "shopify://shop_images/smooth-circle_e63c9d1a-b99f-4c8f-a247-58ec9af6b0df.avif",
+            "mobile_icon_width": 40,
+            "icon_width": 40,
+            "icon_background_type": "none",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "Free shipping",
+            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+          }
+        },
+        "item_bi9AjF": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-coupon",
+            "custom_icon": "shopify://shop_images/makeup-circle_6e19879a-4c23-4c9b-9c0c-f47f7043a2fc.avif",
+            "mobile_icon_width": 40,
+            "icon_width": 40,
+            "icon_background_type": "none",
+            "icon_background": "",
+            "icon_color": "",
+            "title": "Free shipping",
+            "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_kncUeV",
+        "item_Nz8iTd",
+        "item_AQh4MD",
+        "item_bi9AjF"
+      ],
+      "name": "Text with icons",
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "title": "",
+        "heading_tag": "h5",
+        "text_alignment": "center",
+        "icon_spacing": "medium",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
     "airtaghero_bee9qy": {
       "type": "airtaghero",
       "blocks": {
@@ -464,6 +543,7 @@
     "sectionheormain_zfiwzy",
     "logoscroll_CTbCCG",
     "media_with_text_FPn8TW",
+    "text_with_icons_yLTqP3",
     "airtaghero_bee9qy",
     "faq"
   ]
