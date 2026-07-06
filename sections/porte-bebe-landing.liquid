@@ -1,0 +1,1093 @@
+{% comment %}
+  ============================================================
+  SECTION : Page produit "Landing" — Porte-Bébé Bandoulière
+  ------------------------------------------------------------
+  - 100% modifiable depuis l'éditeur de thème (textes, images,
+    couleurs, blocs à ajouter/supprimer/réordonner)
+  - Responsive PC / Tablette / Mobile
+  - À enregistrer dans : sections/porte-bebe-landing.liquid
+  - Utilisation : sur un modèle de page produit (recommandé)
+    ou n'importe où via "Ajouter une section"
+  ============================================================
+{% endcomment %}
+
+{%- liquid
+  assign p = section.settings.product
+  if p == blank and product
+    assign p = product
+  endif
+  assign current_variant = p.selected_or_first_available_variant
+-%}
+
+<style>
+  #pbl-{{ section.id }} {
+    --pbl-accent: {{ section.settings.color_accent }};
+    --pbl-dark: {{ section.settings.color_dark }};
+    --pbl-text: {{ section.settings.color_text }};
+    --pbl-bg: {{ section.settings.color_bg }};
+    --pbl-soft: {{ section.settings.color_soft }};
+    --pbl-ok: {{ section.settings.color_ok }};
+    --pbl-ko: {{ section.settings.color_ko }};
+    --pbl-radius: {{ section.settings.radius }}px;
+    background: var(--pbl-bg);
+    color: var(--pbl-text);
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+  #pbl-{{ section.id }} * { box-sizing: border-box; }
+  #pbl-{{ section.id }} img { max-width: 100%; height: auto; display: block; }
+
+  #pbl-{{ section.id }} .pbl-container {
+    max-width: 118rem;
+    margin: 0 auto;
+    padding: 0 1.6rem;
+  }
+  #pbl-{{ section.id }} .pbl-h2 {
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 0.8rem;
+    color: var(--pbl-dark);
+  }
+  #pbl-{{ section.id }} .pbl-sub {
+    text-align: center;
+    opacity: .75;
+    margin: 0 auto 3rem;
+    max-width: 60rem;
+  }
+  #pbl-{{ section.id }} .pbl-block { padding: 5rem 0; }
+  #pbl-{{ section.id }} .pbl-block--tight { padding: 3rem 0; }
+
+  /* ---------- 1. Zone achat ---------- */
+  #pbl-{{ section.id }} .pbl-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 4rem;
+    padding-top: 3rem;
+  }
+  #pbl-{{ section.id }} .pbl-gallery__main {
+    border-radius: var(--pbl-radius);
+    overflow: hidden;
+    background: var(--pbl-soft);
+    aspect-ratio: 1 / 1;
+  }
+  #pbl-{{ section.id }} .pbl-gallery__main img { width: 100%; height: 100%; object-fit: cover; }
+  #pbl-{{ section.id }} .pbl-thumbs {
+    display: flex; gap: .8rem; margin-top: 1rem;
+    overflow-x: auto; padding-bottom: .4rem;
+    scrollbar-width: thin;
+  }
+  #pbl-{{ section.id }} .pbl-thumbs button {
+    flex: 0 0 7rem; width: 7rem; height: 7rem;
+    border-radius: calc(var(--pbl-radius) * .6);
+    overflow: hidden; border: 2px solid transparent;
+    padding: 0; cursor: pointer; background: var(--pbl-soft);
+  }
+  #pbl-{{ section.id }} .pbl-thumbs button.is-active { border-color: var(--pbl-dark); }
+  #pbl-{{ section.id }} .pbl-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+
+  #pbl-{{ section.id }} .pbl-eyebrow {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: 1.2rem; font-weight: 600; letter-spacing: .04em;
+    color: var(--pbl-dark); text-transform: uppercase;
+  }
+  #pbl-{{ section.id }} .pbl-title {
+    font-size: clamp(2.2rem, 3.4vw, 3rem);
+    font-weight: 800; margin: .6rem 0 .4rem; color: var(--pbl-dark);
+  }
+  #pbl-{{ section.id }} .pbl-stars { color: #f5a623; letter-spacing: .1em; font-size: 1.4rem; }
+  #pbl-{{ section.id }} .pbl-rating { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
+  #pbl-{{ section.id }} .pbl-rating small { opacity: .7; }
+  #pbl-{{ section.id }} .pbl-desc { margin: 0 0 1.6rem; opacity: .85; }
+
+  #pbl-{{ section.id }} .pbl-benefits {
+    border: 2px dashed var(--pbl-dark);
+    border-radius: var(--pbl-radius);
+    padding: 1.4rem 1.6rem;
+    display: grid; gap: .9rem; margin-bottom: 2rem;
+  }
+  #pbl-{{ section.id }} .pbl-benefits li {
+    list-style: none; display: flex; gap: .9rem; align-items: center;
+    font-size: 1.4rem; font-weight: 500;
+  }
+  #pbl-{{ section.id }} .pbl-benefits .ico {
+    flex: 0 0 2.4rem; height: 2.4rem; display: grid; place-items: center;
+    color: var(--pbl-dark); font-size: 1.6rem;
+  }
+
+  /* Offres / bundles */
+  #pbl-{{ section.id }} .pbl-offers__title {
+    text-align: center; font-size: 1.1rem; letter-spacing: .18em;
+    text-transform: uppercase; opacity: .6; margin: 0 0 1rem;
+    display: flex; align-items: center; gap: 1.2rem;
+  }
+  #pbl-{{ section.id }} .pbl-offers__title::before,
+  #pbl-{{ section.id }} .pbl-offers__title::after {
+    content: ""; flex: 1; height: 1px; background: currentColor; opacity: .35;
+  }
+  #pbl-{{ section.id }} .pbl-offer {
+    display: block; border: 1.5px solid rgba(0,0,0,.15);
+    border-radius: var(--pbl-radius); padding: 1.3rem 1.5rem;
+    margin-bottom: 1rem; cursor: pointer; position: relative;
+    transition: border-color .15s, box-shadow .15s;
+    background: #fff;
+  }
+  #pbl-{{ section.id }} .pbl-offer:has(input:checked) {
+    border-color: var(--pbl-dark);
+    box-shadow: 0 0 0 1.5px var(--pbl-dark);
+    background: var(--pbl-soft);
+  }
+  #pbl-{{ section.id }} .pbl-offer input { position: absolute; opacity: 0; pointer-events: none; }
+  #pbl-{{ section.id }} .pbl-offer__row { display: flex; align-items: center; gap: 1.2rem; }
+  #pbl-{{ section.id }} .pbl-offer__radio {
+    width: 1.8rem; height: 1.8rem; border-radius: 50%;
+    border: 2px solid var(--pbl-dark); flex: 0 0 1.8rem; position: relative;
+  }
+  #pbl-{{ section.id }} .pbl-offer:has(input:checked) .pbl-offer__radio::after {
+    content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--pbl-dark);
+  }
+  #pbl-{{ section.id }} .pbl-offer__name { font-weight: 700; }
+  #pbl-{{ section.id }} .pbl-offer__note { font-size: 1.2rem; opacity: .65; }
+  #pbl-{{ section.id }} .pbl-offer__badge {
+    background: var(--pbl-dark); color: #fff; font-size: 1.1rem;
+    font-weight: 700; padding: .3rem .8rem; border-radius: 99px;
+  }
+  #pbl-{{ section.id }} .pbl-offer__price { margin-left: auto; text-align: right; font-weight: 800; white-space: nowrap; }
+  #pbl-{{ section.id }} .pbl-offer__compare {
+    display: block; font-size: 1.2rem; font-weight: 500;
+    text-decoration: line-through; opacity: .5;
+  }
+  #pbl-{{ section.id }} .pbl-offer__variants { margin-top: 1.2rem; display: none; gap: .8rem; }
+  #pbl-{{ section.id }} .pbl-offer:has(input:checked) .pbl-offer__variants { display: grid; }
+  #pbl-{{ section.id }} .pbl-offer__variants select {
+    width: 100%; padding: .9rem 1.2rem; border-radius: calc(var(--pbl-radius) * .6);
+    border: 1px solid rgba(0,0,0,.2); font-size: 1.4rem; background: #fff;
+  }
+
+  #pbl-{{ section.id }} .pbl-atc {
+    width: 100%; border: 0; cursor: pointer;
+    background: var(--pbl-accent); color: #fff;
+    font-size: 1.7rem; font-weight: 700;
+    padding: 1.6rem; border-radius: var(--pbl-radius);
+    transition: transform .12s, filter .12s;
+  }
+  #pbl-{{ section.id }} .pbl-atc:hover { filter: brightness(1.06); transform: translateY(-1px); }
+  #pbl-{{ section.id }} .pbl-atc[disabled] { opacity: .5; cursor: not-allowed; }
+  #pbl-{{ section.id }} .pbl-reassure {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 1.6rem;
+    font-size: 1.2rem; opacity: .75; margin-top: 1.2rem;
+  }
+
+  /* Accordéons infos */
+  #pbl-{{ section.id }} .pbl-acc { border-top: 1px solid rgba(0,0,0,.12); margin-top: 2rem; }
+  #pbl-{{ section.id }} .pbl-acc details { border-bottom: 1px solid rgba(0,0,0,.12); }
+  #pbl-{{ section.id }} .pbl-acc summary {
+    cursor: pointer; list-style: none; padding: 1.4rem .2rem;
+    font-weight: 600; display: flex; justify-content: space-between; align-items: center;
+  }
+  #pbl-{{ section.id }} .pbl-acc summary::-webkit-details-marker { display: none; }
+  #pbl-{{ section.id }} .pbl-acc summary::after { content: "+"; font-size: 1.8rem; font-weight: 400; }
+  #pbl-{{ section.id }} .pbl-acc details[open] summary::after { content: "–"; }
+  #pbl-{{ section.id }} .pbl-acc .pbl-acc__body { padding: 0 .2rem 1.6rem; opacity: .85; }
+
+  /* ---------- 2. Étapes ---------- */
+  #pbl-{{ section.id }} .pbl-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem;
+  }
+  #pbl-{{ section.id }} .pbl-step { text-align: center; }
+  #pbl-{{ section.id }} .pbl-step__media {
+    position: relative; border-radius: var(--pbl-radius); overflow: hidden;
+    aspect-ratio: 4 / 5; background: var(--pbl-soft);
+  }
+  #pbl-{{ section.id }} .pbl-step__media img { width: 100%; height: 100%; object-fit: cover; }
+  #pbl-{{ section.id }} .pbl-step__num {
+    position: absolute; top: .8rem; left: .8rem;
+    width: 2.6rem; height: 2.6rem; border-radius: 50%;
+    background: var(--pbl-dark); color: #fff; font-weight: 700;
+    display: grid; place-items: center; font-size: 1.3rem;
+  }
+  #pbl-{{ section.id }} .pbl-step__label { margin-top: .8rem; font-weight: 600; font-size: 1.4rem; }
+
+  /* ---------- 3. Comparatif ---------- */
+  #pbl-{{ section.id }} .pbl-vs__imgs {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    gap: 1.6rem; max-width: 52rem; margin: 0 auto 2.4rem;
+  }
+  #pbl-{{ section.id }} .pbl-vs__img {
+    border: 1px solid rgba(0,0,0,.1); border-radius: var(--pbl-radius);
+    overflow: hidden; aspect-ratio: 1/1; background: #fff;
+  }
+  #pbl-{{ section.id }} .pbl-vs__img img { width: 100%; height: 100%; object-fit: contain; }
+  #pbl-{{ section.id }} .pbl-vs__badge {
+    width: 3.4rem; height: 3.4rem; border-radius: 50%;
+    background: var(--pbl-dark); color: #fff; font-weight: 800;
+    display: grid; place-items: center; font-size: 1.2rem;
+  }
+  #pbl-{{ section.id }} .pbl-vs__rows { max-width: 62rem; margin: 0 auto; display: grid; gap: 1rem; }
+  #pbl-{{ section.id }} .pbl-vs__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; }
+  #pbl-{{ section.id }} .pbl-vs__cell {
+    display: flex; align-items: center; gap: .9rem;
+    border-radius: 99px; padding: .9rem 1.4rem;
+    font-size: 1.3rem; font-weight: 600;
+    border: 1.5px solid;
+  }
+  #pbl-{{ section.id }} .pbl-vs__cell--ok { border-color: var(--pbl-ok); color: var(--pbl-ok); }
+  #pbl-{{ section.id }} .pbl-vs__cell--ko { border-color: var(--pbl-ko); color: var(--pbl-ko); opacity: .85; }
+
+  /* ---------- 4. Témoignages ---------- */
+  #pbl-{{ section.id }} .pbl-testis {
+    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(24rem, 28rem);
+    gap: 1.6rem; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+  }
+  #pbl-{{ section.id }} .pbl-testi {
+    scroll-snap-align: start;
+    border: 1px solid rgba(0,0,0,.1); border-radius: var(--pbl-radius);
+    background: #fff; overflow: hidden; display: flex; flex-direction: column;
+  }
+  #pbl-{{ section.id }} .pbl-testi__img { aspect-ratio: 1/1; background: var(--pbl-soft); }
+  #pbl-{{ section.id }} .pbl-testi__img img { width: 100%; height: 100%; object-fit: cover; }
+  #pbl-{{ section.id }} .pbl-testi__body { padding: 1.4rem; font-size: 1.3rem; }
+  #pbl-{{ section.id }} .pbl-testi__name { font-weight: 700; margin-top: .8rem; font-size: 1.25rem; opacity: .8; }
+
+  /* ---------- 5. Sections image + texte ---------- */
+  #pbl-{{ section.id }} .pbl-split {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  #pbl-{{ section.id }} .pbl-split--reverse .pbl-split__media { order: 2; }
+  #pbl-{{ section.id }} .pbl-split__media {
+    border-radius: var(--pbl-radius); overflow: hidden; background: var(--pbl-soft);
+  }
+  #pbl-{{ section.id }} .pbl-split h3 {
+    font-size: clamp(1.9rem, 2.6vw, 2.4rem); font-weight: 700;
+    margin: 0 0 1.6rem; color: var(--pbl-dark);
+  }
+  #pbl-{{ section.id }} .pbl-pills { display: grid; gap: .9rem; }
+  #pbl-{{ section.id }} .pbl-pill {
+    display: flex; gap: 1rem; align-items: flex-start;
+    border: 1px solid rgba(0,0,0,.12); border-radius: calc(var(--pbl-radius) * .7);
+    padding: 1rem 1.3rem; font-size: 1.35rem; background: #fff;
+  }
+  #pbl-{{ section.id }} .pbl-pill .ico { color: var(--pbl-dark); font-size: 1.6rem; line-height: 1.2; }
+  #pbl-{{ section.id }} .pbl-pill strong { color: var(--pbl-dark); }
+
+  /* ---------- 6. Preuve sociale ---------- */
+  #pbl-{{ section.id }} .pbl-proof { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  #pbl-{{ section.id }} .pbl-proof__num {
+    font-size: clamp(3.4rem, 6vw, 5.2rem); font-weight: 800; color: var(--pbl-dark);
+    line-height: 1; margin: 0 0 .6rem;
+  }
+  #pbl-{{ section.id }} .pbl-proof__grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  #pbl-{{ section.id }} .pbl-proof__grid img { border-radius: calc(var(--pbl-radius) * .7); width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+
+  /* ---------- 7. Avis clients ---------- */
+  #pbl-{{ section.id }} .pbl-reviews__head {
+    display: flex; align-items: center; gap: 2.4rem; flex-wrap: wrap;
+    margin-bottom: 2.4rem;
+  }
+  #pbl-{{ section.id }} .pbl-reviews__score { font-size: 3.2rem; font-weight: 800; color: var(--pbl-dark); }
+  #pbl-{{ section.id }} .pbl-reviews__grid {
+    columns: 4 24rem; column-gap: 1.6rem;
+  }
+  #pbl-{{ section.id }} .pbl-review {
+    break-inside: avoid; margin-bottom: 1.6rem;
+    border: 1px solid rgba(0,0,0,.1); border-radius: var(--pbl-radius);
+    background: #fff; overflow: hidden;
+  }
+  #pbl-{{ section.id }} .pbl-review img { width: 100%; object-fit: cover; }
+  #pbl-{{ section.id }} .pbl-review__body { padding: 1.3rem; font-size: 1.3rem; }
+  #pbl-{{ section.id }} .pbl-review__meta { display: flex; justify-content: space-between; align-items:center; margin-bottom: .5rem; }
+  #pbl-{{ section.id }} .pbl-review__name { font-weight: 700; font-size: 1.25rem; }
+  #pbl-{{ section.id }} .pbl-review__verified {
+    font-size: 1.05rem; color: var(--pbl-ok); font-weight: 600;
+  }
+
+  /* ---------- 8. FAQ ---------- */
+  #pbl-{{ section.id }} .pbl-faq { max-width: 72rem; margin: 0 auto; }
+  #pbl-{{ section.id }} .pbl-faq details {
+    border: 1px solid rgba(0,0,0,.12); border-radius: calc(var(--pbl-radius) * .7);
+    margin-bottom: 1rem; background: #fff;
+  }
+  #pbl-{{ section.id }} .pbl-faq summary {
+    cursor: pointer; list-style: none; font-weight: 600;
+    padding: 1.4rem 1.6rem; display: flex; justify-content: space-between; gap: 1rem;
+  }
+  #pbl-{{ section.id }} .pbl-faq summary::-webkit-details-marker { display: none; }
+  #pbl-{{ section.id }} .pbl-faq summary::after { content: "+"; font-size: 1.8rem; }
+  #pbl-{{ section.id }} .pbl-faq details[open] summary::after { content: "–"; }
+  #pbl-{{ section.id }} .pbl-faq .pbl-faq__a { padding: 0 1.6rem 1.4rem; opacity: .85; }
+
+  /* Barre d'achat sticky mobile */
+  #pbl-{{ section.id }} .pbl-sticky {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: #fff; border-top: 1px solid rgba(0,0,0,.12);
+    padding: 1rem 1.6rem; display: none; align-items: center; gap: 1.2rem;
+  }
+  #pbl-{{ section.id }} .pbl-sticky .pbl-atc { padding: 1.2rem; font-size: 1.5rem; }
+  #pbl-{{ section.id }} .pbl-sticky__price { font-weight: 800; white-space: nowrap; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 989px) {
+    #pbl-{{ section.id }} .pbl-top { grid-template-columns: 1fr; gap: 2.4rem; }
+    #pbl-{{ section.id }} .pbl-steps { grid-template-columns: repeat(2, 1fr); }
+    #pbl-{{ section.id }} .pbl-split,
+    #pbl-{{ section.id }} .pbl-proof { grid-template-columns: 1fr; gap: 2.4rem; }
+    #pbl-{{ section.id }} .pbl-split--reverse .pbl-split__media { order: 0; }
+  }
+  @media (max-width: 749px) {
+    #pbl-{{ section.id }} { font-size: 1.4rem; }
+    #pbl-{{ section.id }} .pbl-block { padding: 3.2rem 0; }
+    #pbl-{{ section.id }} .pbl-vs__row { grid-template-columns: 1fr; gap: .6rem; }
+    #pbl-{{ section.id }} .pbl-vs__row + .pbl-vs__row { margin-top: .8rem; }
+    #pbl-{{ section.id }} .pbl-reviews__grid { columns: 2 15rem; }
+    {% if section.settings.show_sticky %}
+    #pbl-{{ section.id }} .pbl-sticky.is-visible { display: flex; }
+    {% endif %}
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #pbl-{{ section.id }} * { transition: none !important; }
+  }
+</style>
+
+<div id="pbl-{{ section.id }}" class="pbl">
+
+  {%- comment -%} ============ 1. ZONE ACHAT ============ {%- endcomment -%}
+  <div class="pbl-container">
+    <div class="pbl-top">
+
+      {%- comment -%} Galerie {%- endcomment -%}
+      <div class="pbl-gallery">
+        <div class="pbl-gallery__main" data-pbl-main>
+          {%- if p != blank and p.media.size > 0 -%}
+            {{ p.featured_media | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200' }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'pbl-placeholder' }}
+          {%- endif -%}
+        </div>
+        {%- if p != blank and p.media.size > 1 -%}
+          <div class="pbl-thumbs" data-pbl-thumbs>
+            {%- for media in p.media limit: 8 -%}
+              <button type="button"
+                      class="{% if forloop.first %}is-active{% endif %}"
+                      data-full="{{ media | image_url: width: 1200 }}"
+                      aria-label="{{ 'Image ' | append: forloop.index }}">
+                {{ media | image_url: width: 160 | image_tag: loading: 'lazy' }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Infos + formulaire {%- endcomment -%}
+      <div class="pbl-info">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="pbl-eyebrow">🇫🇷 {{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+
+        <h1 class="pbl-title">
+          {{ section.settings.custom_title | default: p.title | default: 'Titre du produit' }}
+        </h1>
+
+        <div class="pbl-rating">
+          <span class="pbl-stars" aria-hidden="true">★★★★★</span>
+          <small>{{ section.settings.rating_text }}</small>
+        </div>
+
+        {%- if section.settings.short_desc != blank -%}
+          <p class="pbl-desc">{{ section.settings.short_desc }}</p>
+        {%- elsif p != blank -%}
+          <div class="pbl-desc">{{ p.description | strip_html | truncate: 220 }}</div>
+        {%- endif -%}
+
+        {%- comment -%} Encadré bénéfices (blocs "benefit") {%- endcomment -%}
+        {%- assign benefit_blocks = section.blocks | where: 'type', 'benefit' -%}
+        {%- if benefit_blocks.size > 0 -%}
+          <ul class="pbl-benefits">
+            {%- for block in benefit_blocks -%}
+              <li {{ block.shopify_attributes }}>
+                <span class="ico">{{ block.settings.icon }}</span>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- comment -%} Formulaire d'achat + offres {%- endcomment -%}
+        {%- if p != blank -%}
+          {%- form 'product', p, id: 'pbl-form', class: 'pbl-form' -%}
+            <input type="hidden" name="id" value="{{ current_variant.id }}" data-pbl-variant-id>
+            <input type="hidden" name="quantity" value="1" data-pbl-qty>
+
+            {%- assign offer_blocks = section.blocks | where: 'type', 'offer' -%}
+            {%- if offer_blocks.size > 0 -%}
+              {%- if section.settings.offers_title != blank -%}
+                <p class="pbl-offers__title">{{ section.settings.offers_title }}</p>
+              {%- endif -%}
+
+              {%- for block in offer_blocks -%}
+                {%- assign line_total = p.price | times: block.settings.quantity -%}
+                <label class="pbl-offer" {{ block.shopify_attributes }}>
+                  <input type="radio" name="pbl-offer-{{ section.id }}"
+                         value="{{ block.settings.quantity }}"
+                         data-pbl-offer
+                         data-price="{{ line_total | money }}"
+                         {% if block.settings.preselected %}checked{% endif %}>
+                  <span class="pbl-offer__row">
+                    <span class="pbl-offer__radio" aria-hidden="true"></span>
+                    <span>
+                      <span class="pbl-offer__name">{{ block.settings.title }}</span>
+                      {%- if block.settings.badge != blank -%}
+                        <span class="pbl-offer__badge">{{ block.settings.badge }}</span>
+                      {%- endif -%}
+                      {%- if block.settings.note != blank -%}
+                        <span class="pbl-offer__note" style="display:block">{{ block.settings.note }}</span>
+                      {%- endif -%}
+                    </span>
+                    <span class="pbl-offer__price">
+                      {%- if block.settings.compare_text != blank -%}
+                        <span class="pbl-offer__compare">{{ block.settings.compare_text }}</span>
+                      {%- endif -%}
+                      {%- if block.settings.price_text != blank -%}
+                        {{ block.settings.price_text }}
+                      {%- else -%}
+                        {{ line_total | money }}
+                      {%- endif -%}
+                    </span>
+                  </span>
+
+                  {%- if p.has_only_default_variant == false -%}
+                    <span class="pbl-offer__variants">
+                      {%- for i in (1..block.settings.quantity) -%}
+                        <select data-pbl-variant-select aria-label="Choix {{ forloop.index }}">
+                          {%- for variant in p.variants -%}
+                            <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                              {{ variant.title }}{% unless variant.available %} — Épuisé{% endunless %}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                      {%- endfor -%}
+                    </span>
+                  {%- endif -%}
+                </label>
+              {%- endfor -%}
+            {%- endif -%}
+
+            <button type="submit" class="pbl-atc" {% unless current_variant.available %}disabled{% endunless %}>
+              {%- if current_variant.available -%}
+                {{ section.settings.atc_label }} — <span data-pbl-atc-price>{{ current_variant.price | money }}</span>
+              {%- else -%}
+                Épuisé
+              {%- endif -%}
+            </button>
+          {%- endform -%}
+        {%- else -%}
+          <p style="padding:1.6rem;border:1px dashed rgba(0,0,0,.3);border-radius:8px;">
+            Sélectionnez un produit dans les réglages de la section (ou utilisez cette section sur un modèle de page produit).
+          </p>
+        {%- endif -%}
+
+        {%- if section.settings.reassurance != blank -%}
+          <div class="pbl-reassure">
+            {%- assign items = section.settings.reassurance | split: '|' -%}
+            {%- for item in items -%}<span>{{ item | strip }}</span>{%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Accordéons d'informations {%- endcomment -%}
+        {%- assign acc_blocks = section.blocks | where: 'type', 'accordion' -%}
+        {%- if acc_blocks.size > 0 -%}
+          <div class="pbl-acc">
+            {%- for block in acc_blocks -%}
+              <details {{ block.shopify_attributes }}>
+                <summary>{{ block.settings.title }}</summary>
+                <div class="pbl-acc__body">{{ block.settings.content }}</div>
+              </details>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ============ 2. ÉTAPES ============ {%- endcomment -%}
+  {%- assign step_blocks = section.blocks | where: 'type', 'step' -%}
+  {%- if step_blocks.size > 0 -%}
+    <div class="pbl-block">
+      <div class="pbl-container">
+        {%- if section.settings.steps_title != blank -%}
+          <h2 class="pbl-h2">{{ section.settings.steps_title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.steps_sub != blank -%}
+          <p class="pbl-sub">{{ section.settings.steps_sub }}</p>
+        {%- endif -%}
+        <div class="pbl-steps">
+          {%- for block in step_blocks -%}
+            <div class="pbl-step" {{ block.shopify_attributes }}>
+              <div class="pbl-step__media">
+                <span class="pbl-step__num">{{ forloop.index }}</span>
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  {{ 'lifestyle-1' | placeholder_svg_tag }}
+                {%- endif -%}
+              </div>
+              <p class="pbl-step__label">{{ block.settings.label }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 3. COMPARATIF ============ {%- endcomment -%}
+  {%- assign vs_blocks = section.blocks | where: 'type', 'compare_row' -%}
+  {%- if vs_blocks.size > 0 -%}
+    <div class="pbl-block" style="background: var(--pbl-soft);">
+      <div class="pbl-container">
+        {%- if section.settings.vs_title != blank -%}
+          <h2 class="pbl-h2">{{ section.settings.vs_title }}</h2>
+        {%- endif -%}
+        <div class="pbl-vs__imgs">
+          <div class="pbl-vs__img">
+            {%- if section.settings.vs_image_us != blank -%}
+              {{ section.settings.vs_image_us | image_url: width: 600 | image_tag: loading: 'lazy' }}
+            {%- else -%}{{ 'product-2' | placeholder_svg_tag }}{%- endif -%}
+          </div>
+          <span class="pbl-vs__badge">VS</span>
+          <div class="pbl-vs__img">
+            {%- if section.settings.vs_image_them != blank -%}
+              {{ section.settings.vs_image_them | image_url: width: 600 | image_tag: loading: 'lazy' }}
+            {%- else -%}{{ 'product-3' | placeholder_svg_tag }}{%- endif -%}
+          </div>
+        </div>
+        <div class="pbl-vs__rows">
+          {%- for block in vs_blocks -%}
+            <div class="pbl-vs__row" {{ block.shopify_attributes }}>
+              <span class="pbl-vs__cell pbl-vs__cell--ok"><span aria-hidden="true">✓</span> {{ block.settings.pro }}</span>
+              <span class="pbl-vs__cell pbl-vs__cell--ko"><span aria-hidden="true">✕</span> {{ block.settings.con }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 4. TÉMOIGNAGES ============ {%- endcomment -%}
+  {%- assign testi_blocks = section.blocks | where: 'type', 'testimonial' -%}
+  {%- if testi_blocks.size > 0 -%}
+    <div class="pbl-block">
+      <div class="pbl-container">
+        <div class="pbl-testis">
+          {%- for block in testi_blocks -%}
+            <article class="pbl-testi" {{ block.shopify_attributes }}>
+              <div class="pbl-testi__img">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {%- else -%}{{ 'lifestyle-2' | placeholder_svg_tag }}{%- endif -%}
+              </div>
+              <div class="pbl-testi__body">
+                <span class="pbl-stars" aria-hidden="true">★★★★★</span>
+                <p>{{ block.settings.text }}</p>
+                <p class="pbl-testi__name">{{ block.settings.name }}</p>
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 5. POIDS MIEUX RÉPARTI ============ {%- endcomment -%}
+  {%- assign weight_blocks = section.blocks | where: 'type', 'weight_point' -%}
+  {%- if section.settings.weight_title != blank or weight_blocks.size > 0 -%}
+    <div class="pbl-block pbl-block--tight">
+      <div class="pbl-container">
+        <div class="pbl-split">
+          <div>
+            <h3>{{ section.settings.weight_title }}</h3>
+            <div class="pbl-pills">
+              {%- for block in weight_blocks -%}
+                <div class="pbl-pill" {{ block.shopify_attributes }}>
+                  <span class="ico">{{ block.settings.icon }}</span>
+                  <span><strong>{{ block.settings.title }}</strong>{% if block.settings.text != blank %} : {{ block.settings.text }}{% endif %}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="pbl-split__media">
+            {%- if section.settings.weight_image != blank -%}
+              {{ section.settings.weight_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+            {%- else -%}{{ 'image' | placeholder_svg_tag }}{%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 6. MAINS LIBRES ============ {%- endcomment -%}
+  {%- if section.settings.hands_title != blank -%}
+    <div class="pbl-block pbl-block--tight">
+      <div class="pbl-container">
+        <div class="pbl-split pbl-split--reverse">
+          <div>
+            <h3>{{ section.settings.hands_title }}</h3>
+            <div class="pbl-pills">
+              {%- if section.settings.hands_badge_1 != blank -%}
+                <div class="pbl-pill"><span class="ico">🤲</span><span>{{ section.settings.hands_badge_1 }}</span></div>
+              {%- endif -%}
+              {%- if section.settings.hands_badge_2 != blank -%}
+                <div class="pbl-pill"><span class="ico">👶</span><span>{{ section.settings.hands_badge_2 }}</span></div>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="pbl-split__media">
+            {%- if section.settings.hands_image != blank -%}
+              {{ section.settings.hands_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+            {%- else -%}{{ 'lifestyle-1' | placeholder_svg_tag }}{%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 7. CONÇU POUR LA VRAIE VIE ============ {%- endcomment -%}
+  {%- assign life_blocks = section.blocks | where: 'type', 'life_point' -%}
+  {%- if section.settings.life_title != blank or life_blocks.size > 0 -%}
+    <div class="pbl-block pbl-block--tight">
+      <div class="pbl-container">
+        <div class="pbl-split">
+          <div>
+            <h3>{{ section.settings.life_title }}</h3>
+            <div class="pbl-pills">
+              {%- for block in life_blocks -%}
+                <div class="pbl-pill" {{ block.shopify_attributes }}>
+                  <span class="ico">{{ block.settings.icon }}</span>
+                  <span><strong>{{ block.settings.title }}</strong>{% if block.settings.text != blank %} : {{ block.settings.text }}{% endif %}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="pbl-split__media">
+            {%- if section.settings.life_image != blank -%}
+              {{ section.settings.life_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+            {%- else -%}{{ 'image' | placeholder_svg_tag }}{%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 8. MATIÈRES ============ {%- endcomment -%}
+  {%- assign mat_blocks = section.blocks | where: 'type', 'material' -%}
+  {%- if section.settings.mat_title != blank or mat_blocks.size > 0 -%}
+    <div class="pbl-block pbl-block--tight">
+      <div class="pbl-container">
+        <div class="pbl-split pbl-split--reverse">
+          <div>
+            <h3>{{ section.settings.mat_title }}</h3>
+            <div class="pbl-pills">
+              {%- for block in mat_blocks -%}
+                <div class="pbl-pill" {{ block.shopify_attributes }}>
+                  <span class="ico">{{ block.settings.icon }}</span>
+                  <span><strong>{{ block.settings.title }}</strong>{% if block.settings.text != blank %} : {{ block.settings.text }}{% endif %}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="pbl-split__media">
+            {%- if section.settings.mat_image != blank -%}
+              {{ section.settings.mat_image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+            {%- else -%}{{ 'image' | placeholder_svg_tag }}{%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 9. PREUVE SOCIALE ============ {%- endcomment -%}
+  {%- if section.settings.proof_number != blank -%}
+    <div class="pbl-block" style="background: var(--pbl-soft);">
+      <div class="pbl-container">
+        {%- if section.settings.proof_title != blank -%}
+          <h2 class="pbl-h2">{{ section.settings.proof_title }}</h2>
+        {%- endif -%}
+        <div class="pbl-proof">
+          <div class="pbl-proof__grid">
+            {%- if section.settings.proof_image_1 != blank -%}{{ section.settings.proof_image_1 | image_url: width: 500 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'lifestyle-1' | placeholder_svg_tag }}{%- endif -%}
+            {%- if section.settings.proof_image_2 != blank -%}{{ section.settings.proof_image_2 | image_url: width: 500 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'lifestyle-2' | placeholder_svg_tag }}{%- endif -%}
+            {%- if section.settings.proof_image_3 != blank -%}{{ section.settings.proof_image_3 | image_url: width: 500 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'lifestyle-1' | placeholder_svg_tag }}{%- endif -%}
+            {%- if section.settings.proof_image_4 != blank -%}{{ section.settings.proof_image_4 | image_url: width: 500 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'lifestyle-2' | placeholder_svg_tag }}{%- endif -%}
+          </div>
+          <div>
+            <p class="pbl-proof__num">{{ section.settings.proof_number }}</p>
+            <p style="margin:0 0 .8rem; font-weight:600;">{{ section.settings.proof_label }}</p>
+            <span class="pbl-stars" aria-hidden="true">★★★★★</span>
+            <p style="opacity:.65; font-size:1.25rem; margin:.4rem 0 0;">{{ section.settings.proof_note }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 10. AVIS CLIENTS ============ {%- endcomment -%}
+  {%- assign review_blocks = section.blocks | where: 'type', 'review' -%}
+  {%- if review_blocks.size > 0 -%}
+    <div class="pbl-block">
+      <div class="pbl-container">
+        {%- if section.settings.reviews_title != blank -%}
+          <h2 class="pbl-h2" style="text-align:left;">{{ section.settings.reviews_title }}</h2>
+        {%- endif -%}
+        <div class="pbl-reviews__head">
+          <span class="pbl-reviews__score">{{ section.settings.reviews_score }}</span>
+          <div>
+            <span class="pbl-stars" aria-hidden="true">★★★★★</span><br>
+            <small style="opacity:.65">{{ section.settings.reviews_count }}</small>
+          </div>
+        </div>
+        <div class="pbl-reviews__grid">
+          {%- for block in review_blocks -%}
+            <article class="pbl-review" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 500 | image_tag: loading: 'lazy' }}
+              {%- endif -%}
+              <div class="pbl-review__body">
+                <div class="pbl-review__meta">
+                  <span class="pbl-stars" style="font-size:1.15rem" aria-hidden="true">★★★★★</span>
+                  {%- if block.settings.verified -%}
+                    <span class="pbl-review__verified">✓ Achat vérifié</span>
+                  {%- endif -%}
+                </div>
+                <p class="pbl-review__name">{{ block.settings.name }}</p>
+                <p>{{ block.settings.text }}</p>
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ 11. FAQ ============ {%- endcomment -%}
+  {%- assign faq_blocks = section.blocks | where: 'type', 'faq' -%}
+  {%- if faq_blocks.size > 0 -%}
+    <div class="pbl-block" style="background: var(--pbl-soft);">
+      <div class="pbl-container">
+        {%- if section.settings.faq_title != blank -%}
+          <h2 class="pbl-h2">{{ section.settings.faq_title }}</h2>
+        {%- endif -%}
+        <div class="pbl-faq">
+          {%- for block in faq_blocks -%}
+            <details {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.question }}</summary>
+              <div class="pbl-faq__a">{{ block.settings.answer }}</div>
+            </details>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} ============ Barre sticky mobile ============ {%- endcomment -%}
+  {%- if section.settings.show_sticky and p != blank -%}
+    <div class="pbl-sticky" data-pbl-sticky>
+      <span class="pbl-sticky__price" data-pbl-sticky-price>{{ current_variant.price | money }}</span>
+      <button type="button" class="pbl-atc" data-pbl-sticky-btn>{{ section.settings.atc_label }}</button>
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+  (function () {
+    var root = document.getElementById('pbl-{{ section.id }}');
+    if (!root) return;
+
+    /* --- Galerie : clic sur miniature --- */
+    var main = root.querySelector('[data-pbl-main] img');
+    var thumbs = root.querySelectorAll('[data-pbl-thumbs] button');
+    thumbs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (main) {
+          main.src = btn.dataset.full;
+          main.removeAttribute('srcset');
+        }
+        thumbs.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+      });
+    });
+
+    /* --- Offres : quantité + prix affiché --- */
+    var form = root.querySelector('#pbl-form');
+    if (form) {
+      var qtyInput = form.querySelector('[data-pbl-qty]');
+      var variantInput = form.querySelector('[data-pbl-variant-id]');
+      var atcPrice = form.querySelector('[data-pbl-atc-price]');
+      var stickyPrice = root.querySelector('[data-pbl-sticky-price]');
+
+      function syncOffer(radio) {
+        if (qtyInput) qtyInput.value = radio.value;
+        if (atcPrice && radio.dataset.price) atcPrice.textContent = radio.dataset.price;
+        if (stickyPrice && radio.dataset.price) stickyPrice.textContent = radio.dataset.price;
+      }
+      var radios = form.querySelectorAll('[data-pbl-offer]');
+      radios.forEach(function (r) {
+        r.addEventListener('change', function () { syncOffer(r); });
+        if (r.checked) syncOffer(r);
+      });
+
+      /* Variante : on prend le 1er sélecteur visible de l'offre cochée */
+      form.addEventListener('change', function () {
+        var checked = form.querySelector('[data-pbl-offer]:checked');
+        var scope = checked ? checked.closest('.pbl-offer') : form;
+        var select = scope ? scope.querySelector('[data-pbl-variant-select]') : null;
+        if (!select) select = form.querySelector('[data-pbl-variant-select]');
+        if (select && variantInput) variantInput.value = select.value;
+      });
+    }
+
+    /* --- Sticky mobile : visible après scroll --- */
+    var sticky = root.querySelector('[data-pbl-sticky]');
+    if (sticky && form) {
+      var stickyBtn = root.querySelector('[data-pbl-sticky-btn]');
+      if (stickyBtn) {
+        stickyBtn.addEventListener('click', function () {
+          form.requestSubmit ? form.requestSubmit() : form.submit();
+        });
+      }
+      var trigger = root.querySelector('.pbl-atc');
+      if ('IntersectionObserver' in window && trigger) {
+        new IntersectionObserver(function (entries) {
+          sticky.classList.toggle('is-visible', !entries[0].isIntersecting);
+        }, { threshold: 0 }).observe(trigger);
+      }
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Landing produit bébé",
+  "tag": "section",
+  "class": "section-pbl",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Produit (laisser vide sur une page produit)" },
+    { "type": "header", "content": "En-tête produit" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "Conçu en France pour bébés OK" },
+    { "type": "text", "id": "custom_title", "label": "Titre personnalisé (sinon titre du produit)" },
+    { "type": "text", "id": "rating_text", "label": "Texte de notation", "default": "4.8/5 — plus de 500 avis" },
+    { "type": "textarea", "id": "short_desc", "label": "Description courte", "default": "Gardez bébé apaisé contre vous, les mains libres, sans douleur au dos ni aux bras. Prêt en quelques secondes, où que vous soyez." },
+    { "type": "text", "id": "offers_title", "label": "Titre des offres", "default": "Offre de printemps" },
+    { "type": "text", "id": "atc_label", "label": "Texte du bouton d'achat", "default": "Ajouter au panier" },
+    { "type": "text", "id": "reassurance", "label": "Réassurance (séparer par | )", "default": "🚚 Expédié sous 48h | 💜 Satisfait ou remboursé 30 jours" },
+    { "type": "checkbox", "id": "show_sticky", "label": "Barre d'achat fixe sur mobile", "default": true },
+
+    { "type": "header", "content": "Section — Étapes" },
+    { "type": "text", "id": "steps_title", "label": "Titre", "default": "Le porte-bébé qui apaise bébé, sans vous faire mal." },
+    { "type": "text", "id": "steps_sub", "label": "Sous-titre" },
+
+    { "type": "header", "content": "Section — Comparatif" },
+    { "type": "text", "id": "vs_title", "label": "Titre", "default": "Notre porte-bébé face aux autres" },
+    { "type": "image_picker", "id": "vs_image_us", "label": "Image — notre produit" },
+    { "type": "image_picker", "id": "vs_image_them", "label": "Image — produit classique" },
+
+    { "type": "header", "content": "Section — Poids mieux réparti" },
+    { "type": "text", "id": "weight_title", "label": "Titre", "default": "Un poids mieux réparti, ça change tout." },
+    { "type": "image_picker", "id": "weight_image", "label": "Image (avant / après)" },
+
+    { "type": "header", "content": "Section — Mains libres" },
+    { "type": "text", "id": "hands_title", "label": "Titre", "default": "Quand il veut les bras… mais que vous êtes occupés." },
+    { "type": "text", "id": "hands_badge_1", "label": "Badge 1", "default": "Bébé apaisé immédiatement" },
+    { "type": "text", "id": "hands_badge_2", "label": "Badge 2", "default": "100% mains libres" },
+    { "type": "image_picker", "id": "hands_image", "label": "Image" },
+
+    { "type": "header", "content": "Section — Conçu pour la vraie vie" },
+    { "type": "text", "id": "life_title", "label": "Titre", "default": "Conçu pour la vraie vie" },
+    { "type": "image_picker", "id": "life_image", "label": "Image" },
+
+    { "type": "header", "content": "Section — Matières" },
+    { "type": "text", "id": "mat_title", "label": "Titre", "default": "Doux pour lui. Solide pour vous." },
+    { "type": "image_picker", "id": "mat_image", "label": "Image (couches de tissu)" },
+
+    { "type": "header", "content": "Section — Preuve sociale" },
+    { "type": "text", "id": "proof_title", "label": "Titre", "default": "Testé et approuvé par des milliers de parents" },
+    { "type": "text", "id": "proof_number", "label": "Grand chiffre", "default": "23 000+" },
+    { "type": "text", "id": "proof_label", "label": "Libellé", "default": "Parents qui ont sauvé leur dos" },
+    { "type": "text", "id": "proof_note", "label": "Note", "default": "Moyenne basée sur les avis vérifiés" },
+    { "type": "image_picker", "id": "proof_image_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "proof_image_2", "label": "Image 2" },
+    { "type": "image_picker", "id": "proof_image_3", "label": "Image 3" },
+    { "type": "image_picker", "id": "proof_image_4", "label": "Image 4" },
+
+    { "type": "header", "content": "Section — Avis clients" },
+    { "type": "text", "id": "reviews_title", "label": "Titre", "default": "Avis des clients" },
+    { "type": "text", "id": "reviews_score", "label": "Note globale", "default": "4.8" },
+    { "type": "text", "id": "reviews_count", "label": "Nombre d'avis", "default": "568 avis" },
+
+    { "type": "header", "content": "Section — FAQ" },
+    { "type": "text", "id": "faq_title", "label": "Titre", "default": "FAQ" },
+
+    { "type": "header", "content": "Couleurs & style" },
+    { "type": "color", "id": "color_accent", "label": "Couleur du bouton d'achat", "default": "#FF8A5C" },
+    { "type": "color", "id": "color_dark", "label": "Couleur principale (titres, badges)", "default": "#3D1E4F" },
+    { "type": "color", "id": "color_text", "label": "Couleur du texte", "default": "#1F1B24" },
+    { "type": "color", "id": "color_bg", "label": "Fond de page", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_soft", "label": "Fond doux (sections alternées)", "default": "#F7F3F9" },
+    { "type": "color", "id": "color_ok", "label": "Couleur des avantages (✓)", "default": "#5B2D82" },
+    { "type": "color", "id": "color_ko", "label": "Couleur des inconvénients (✕)", "default": "#D6455B" },
+    { "type": "range", "id": "radius", "label": "Arrondi des blocs", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 14 }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Bénéfice (encadré)",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icône (emoji)", "default": "✅" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "De 0 mois à 4 ans (jusqu'à 20 kg)" }
+      ]
+    },
+    {
+      "type": "offer",
+      "name": "Offre / bundle",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Nom de l'offre", "default": "1 porte-bébé" },
+        { "type": "range", "id": "quantity", "label": "Quantité", "min": 1, "max": 5, "step": 1, "default": 1 },
+        { "type": "text", "id": "badge", "label": "Badge (ex : Économisez 20 €)" },
+        { "type": "text", "id": "note", "label": "Note sous le titre (ex : + un cadeau offert)" },
+        { "type": "text", "id": "price_text", "label": "Prix affiché (sinon prix × quantité)" },
+        { "type": "text", "id": "compare_text", "label": "Prix barré (optionnel)" },
+        { "type": "checkbox", "id": "preselected", "label": "Sélectionnée par défaut", "default": false }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordéon (infos produit)",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre", "default": "Livraison, retours & garantie" },
+        { "type": "richtext", "id": "content", "label": "Contenu", "default": "<p>Expédition sous 48h. Retour gratuit sous 30 jours.</p>" }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Étape (mode d'emploi)",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "label", "label": "Légende", "default": "Enfilez" }
+      ]
+    },
+    {
+      "type": "compare_row",
+      "name": "Ligne de comparaison",
+      "settings": [
+        { "type": "text", "id": "pro", "label": "Notre avantage (✓)", "default": "Prêt en 10 secondes" },
+        { "type": "text", "id": "con", "label": "Inconvénient concurrent (✕)", "default": "Long à installer" }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Témoignage (carte photo)",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "textarea", "id": "text", "label": "Texte", "default": "Un vrai gain de confort au quotidien, bébé s'endort en quelques minutes." },
+        { "type": "text", "id": "name", "label": "Prénom", "default": "Julie R." }
+      ]
+    },
+    {
+      "type": "weight_point",
+      "name": "Point — Poids réparti",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icône (emoji)", "default": "💪" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Soulage vos bras" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "finies les crampes après 10 minutes" }
+      ]
+    },
+    {
+      "type": "life_point",
+      "name": "Point — Vraie vie",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icône (emoji)", "default": "🧳" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "Ultra-compact" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "se glisse dans n'importe quel sac" }
+      ]
+    },
+    {
+      "type": "material",
+      "name": "Point — Matières",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icône (emoji)", "default": "🌿" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "100% coton" },
+        { "type": "text", "id": "text", "label": "Texte", "default": "hypoallergénique, doux et respirant" }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Avis client",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo (optionnelle)" },
+        { "type": "text", "id": "name", "label": "Prénom", "default": "Camille D." },
+        { "type": "textarea", "id": "text", "label": "Avis", "default": "Très pratique au quotidien, je le recommande à toutes les jeunes mamans." },
+        { "type": "checkbox", "id": "verified", "label": "Achat vérifié", "default": true }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "Question FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Convient-il à toutes les tailles ?" },
+        { "type": "richtext", "id": "answer", "label": "Réponse", "default": "<p>Oui, la sangle est ajustable et s'adapte à toutes les morphologies en quelques secondes.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Landing produit bébé",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "👶", "text": "De 0 mois à 4 ans (jusqu'à 20 kg)" } },
+        { "type": "benefit", "settings": { "icon": "🦵", "text": "Portage physiologique (position M)" } },
+        { "type": "benefit", "settings": { "icon": "📏", "text": "S'adapte à toutes les morphologies" } },
+        { "type": "benefit", "settings": { "icon": "⚡", "text": "S'installe en 10 secondes" } },
+        { "type": "benefit", "settings": { "icon": "💜", "text": "Soulage votre dos et vos bras" } },
+        { "type": "offer", "settings": { "title": "1 porte-bébé", "quantity": 1, "preselected": true } },
+        { "type": "offer", "settings": { "title": "1 acheté + 1 offert", "quantity": 2, "badge": "Économisez 40 €", "note": "L'idéal pour Papa & Maman" } },
+        { "type": "accordion", "settings": { "title": "Comment le mettre (3 étapes)" } },
+        { "type": "accordion", "settings": { "title": "Matières & entretien" } },
+        { "type": "accordion", "settings": { "title": "Poids & âge" } },
+        { "type": "accordion", "settings": { "title": "Livraison, retours & garantie" } },
+        { "type": "step", "settings": { "label": "Passez la sangle" } },
+        { "type": "step", "settings": { "label": "Glissez bébé" } },
+        { "type": "step", "settings": { "label": "Ajustez" } },
+        { "type": "step", "settings": { "label": "Il s'est apaisé" } },
+        { "type": "compare_row", "settings": { "pro": "Prêt en 10 secondes", "con": "Long à installer" } },
+        { "type": "compare_row", "settings": { "pro": "Compact, tient dans un sac", "con": "Encombrant, difficile à ranger" } },
+        { "type": "compare_row", "settings": { "pro": "Épaule rembourrée, zéro douleur", "con": "Sangles qui compriment vite" } },
+        { "type": "compare_row", "settings": { "pro": "Clip de sécurité mécanique", "con": "Réglage technique, maintien instable" } },
+        { "type": "compare_row", "settings": { "pro": "Parfait pour monter / descendre", "con": "Peu pratique en transition" } },
+        { "type": "compare_row", "settings": { "pro": "Léger et respirant", "con": "Tenue chaude, fait transpirer" } },
+        { "type": "testimonial", "settings": { "name": "Judith C." } },
+        { "type": "testimonial", "settings": { "name": "Thelio & Marie" } },
+        { "type": "testimonial", "settings": { "name": "Valentine B." } },
+        { "type": "testimonial", "settings": { "name": "Chloé S." } },
+        { "type": "weight_point", "settings": { "icon": "💪", "title": "Soulage vos bras", "text": "finies les crampes après 10 minutes" } },
+        { "type": "weight_point", "settings": { "icon": "🦴", "title": "Protège votre dos", "text": "moins de tension sur les lombaires" } },
+        { "type": "weight_point", "settings": { "icon": "🎗️", "title": "Sangle anti-cisaillement", "text": "le poids est réparti sur une large zone" } },
+        { "type": "weight_point", "settings": { "icon": "🛋️", "title": "Confort longue durée", "text": "portez bébé des heures sans douleur" } },
+        { "type": "life_point", "settings": { "icon": "🧳", "title": "Ultra-compact", "text": "se glisse dans n'importe quel sac" } },
+        { "type": "life_point", "settings": { "icon": "🧺", "title": "Zéro galère", "text": "fini la poussette dans les escaliers" } },
+        { "type": "life_point", "settings": { "icon": "✈️", "title": "Nomade", "text": "le compagnon de voyage idéal" } },
+        { "type": "life_point", "settings": { "icon": "⚡", "title": "Instantané", "text": "se dégaine et s'installe en 10 secondes" } },
+        { "type": "material", "settings": { "icon": "🌿", "title": "100% coton", "text": "hypoallergénique, respirant et agréable" } },
+        { "type": "material", "settings": { "icon": "🛡️", "title": "Poly-noyau", "text": "ultra résistant, ne se déforme pas" } },
+        { "type": "review", "settings": { "name": "Roxane G." } },
+        { "type": "review", "settings": { "name": "Vachikara J." } },
+        { "type": "review", "settings": { "name": "Amelie C." } },
+        { "type": "review", "settings": { "name": "Alexina J." } },
+        { "type": "review", "settings": { "name": "Liliane J." } },
+        { "type": "review", "settings": { "name": "Chloé P." } },
+        { "type": "faq", "settings": { "question": "Est-ce qu'il convient à toutes les tailles (Maman ronde, Papa costaud) ?" } },
+        { "type": "faq", "settings": { "question": "Jusqu'à quel âge / poids puis-je l'utiliser ?" } },
+        { "type": "faq", "settings": { "question": "Est-il lavable en machine ?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
