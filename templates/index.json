@@ -97,7 +97,6 @@
         "avatar_GDqDkt",
         "avatar_TyJcaE"
       ],
-      "disabled": true,
       "name": "Hero nutrition moderne",
       "settings": {
         "main_image": "shopify://shop_images/ChatGPT_Image_28_juin_2026_15_05_00.png",
@@ -251,7 +250,6 @@
         "image_H7y8y6",
         "image_E9BzCF"
       ],
-      "disabled": true,
       "name": "SS - Scrolling logo cloud #5",
       "settings": {
         "layout_radius": 30,
@@ -319,7 +317,6 @@
       "block_order": [
         "image_jRbxYh"
       ],
-      "disabled": true,
       "name": "Media with text",
       "settings": {
         "full_width": false,
@@ -393,7 +390,6 @@
         "item_AQh4MD",
         "item_bi9AjF"
       ],
-      "disabled": true,
       "name": "Text with icons",
       "settings": {
         "full_width": true,
